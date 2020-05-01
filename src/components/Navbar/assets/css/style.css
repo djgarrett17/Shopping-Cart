@@ -1,0 +1,46 @@
+.nav-wrapper{
+    display: flex;
+    width: 100%;
+    background: blueviolet;
+
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.brand-logo{
+    margin: 0px 20px;
+    text-decoration: none;
+    color: aliceblue;
+}
+
+
+
+.right{
+    display: flex;
+    list-style: none;
+    
+}
+
+.navshop{
+    margin: 0px 20px;
+    text-decoration: none;
+    color: aliceblue;
+    
+}
+
+.navmycart{
+    margin: 0px 20px;
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.navshoppingcart{
+    margin: 0px 20px;
+    text-decoration: none;
+    color: aliceblue;
+}
