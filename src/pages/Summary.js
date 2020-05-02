@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import '../pages/styles/Summary.css';
-import { removeItem,addQuantity,subtractQuantity} from '../components/actions/cartActions.js'
+import { removeItem,addQuantity,subtractQuantity,clearItems,hardReload } from '../components/actions/cartActions.js';
+// import {hardReload} from '../index.js';
 import Recipe from '../components/Recipe.js'
 // import cartReducer from '../components/reducers/cartReducer.js'
 class Summary extends Component{
@@ -11,9 +12,20 @@ class Summary extends Component{
     handleRemove = (id)=>{
         this.props.removeItem(id);
     }
- 
+    handleClear = ()=>{
+        this.props.clearItems(); 
+    }
+    handleReload = ()=>{
+        this.props.hardReload();
+    }
+    
+
     render(){
-              
+
+    //    function clearStorage(){
+    //     localStorage.clear();
+    // }
+    
         let addedItems = this.props.items.length ?
             (  
                 this.props.items.map(item=>{
@@ -54,7 +66,7 @@ class Summary extends Component{
             <ul className="collection">
                 {addedItems}
             </ul>
-            <Link to="/receipt"><input type="submit" value="Place Order" class="btn"/></Link>    
+            <Link to="/receipt" ><input onClick={() => {this.handleReload();localStorage.clear()}} type="submit" value="Place Order" class="btn"/></Link>    
         </div> 
          
     </div>
@@ -71,6 +83,8 @@ const mapStateToProps = (state)=>{
 }
 const mapDispatchToProps = (dispatch)=>{
     return{
+        hardReload: ()=>{dispatch(hardReload())},
+        clearItems: ()=>{dispatch(clearItems())},
         removeItem: (id)=>{dispatch(removeItem(id))},
         addQuantity: (id)=>{dispatch(addQuantity(id))},
         subtractQuantity: (id)=>{dispatch(subtractQuantity(id))}

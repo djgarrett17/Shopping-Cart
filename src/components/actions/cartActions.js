@@ -1,4 +1,4 @@
-import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING} from '../actions/action-types/cart-actions.js'
+import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING,CLEAR_ITEMS,HARD_RELOAD} from '../actions/action-types/cart-actions.js'
 
 //add cart action
 export const addToCart= (id)=>{
@@ -26,5 +26,19 @@ export const addQuantity=(id)=>{
     return{
         type: ADD_QUANTITY,
         id
+    }
+}
+
+// clear cart items after order placed
+export const clearItems = ()=>{
+    return{
+        type: CLEAR_ITEMS
+    }
+}
+
+// hard reload page after order placed
+export const hardReload = () => {
+    return{
+        type: HARD_RELOAD
     }
 }

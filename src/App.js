@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Container from './styles/container.css';
 
@@ -11,8 +12,16 @@ import Checkout from './pages/Checkout.js'
 import Summary from './pages/Summary.js'
 import Receipt from './pages/Receipt.js'
 
+import {clearItems} from './components/actions/cartActions.js';
 
-function App() { 
+
+class App extends Component{
+
+  // handleClear = ()=>{
+  //   this.props.clearItems(); 
+  // }
+
+  render(){
   return (
     <Router>
      
@@ -30,5 +39,17 @@ function App() {
     </Router>
   )
 }
+}
 
-export default App;
+const mapStateToProps = (state)=>{
+  return{
+      items: state.addedItems
+  }
+}
+const mapDispatchToProps = (dispatch)=>{
+  return{
+      clearItems: ()=>{dispatch(clearItems())},
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

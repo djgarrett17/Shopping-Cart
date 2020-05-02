@@ -4,8 +4,8 @@ import Item3 from './assets/program.png'
 import Item4 from './assets/program.png'
 import Item5 from './assets/program.png'
 import Item6 from './assets/program.png'
-import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING } from '../actions/action-types/cart-actions.js'
-
+import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING, CLEAR_ITEMS, HARD_RELOAD } from '../actions/action-types/cart-actions.js'
+import { combineReducers } from 'redux';
 
 const initState = {
     items: [
@@ -20,9 +20,19 @@ const initState = {
     total: 0
 
 }
+
+
+
 const cartReducer= (state = initState,action)=>{
    
     //INSIDE HOME COMPONENT
+    if(action.type === CLEAR_ITEMS){
+        console.log("order placed")
+
+        return initState;
+    }
+    
+
     if(action.type === ADD_TO_CART){
           let addedItem = state.items.find(item=> item.id === action.id)
           //check if the action id exists in the addedItems
@@ -108,10 +118,15 @@ const cartReducer= (state = initState,action)=>{
         }
   }
     
+    
   else{
     return state
     }
     
 }
+
+
+
+  
 
 export default cartReducer

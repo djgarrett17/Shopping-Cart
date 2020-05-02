@@ -20,7 +20,12 @@ class Cart extends Component{
         this.props.subtractQuantity(id);
     }
     render(){
-              
+           
+        // function clearItems() { 
+        //     addedItems = [];
+        //  } 
+
+
         let addedItems = this.props.items.length ?
             (  
                 this.props.items.map(item=>{

@@ -2,18 +2,36 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import '../pages/styles/Receipt.css';
-import { removeItem,addQuantity,subtractQuantity} from '../components/actions/cartActions.js'
+import { removeItem,addQuantity,subtractQuantity,clearItems} from '../components/actions/cartActions.js'
 import Recipe from '../components/Recipe.js'
 // import cartReducer from '../components/reducers/cartReducer.js'
+import $ from 'jquery';
 class Receipt extends Component{
+    handleClear = ()=>{
+        this.props.clearItems(); 
+    }
+    componentWillUnmount() {
+       this.handleClear()
+    }
 
     //to remove the item completely
     handleRemove = (id)=>{
         this.props.removeItem(id);
     }
+    
  
     render(){
-              
+        
+        // window.onload =  window.location.reload()
+// $(document).ready(function(){
+//     location.reload()
+    
+// });
+
+
+
+
+
         let addedItems = this.props.items.length ?
             (  
                 this.props.items.map(item=>{
@@ -70,6 +88,7 @@ const mapStateToProps = (state)=>{
 }
 const mapDispatchToProps = (dispatch)=>{
     return{
+        clearItems: ()=>{dispatch(clearItems())},
         removeItem: (id)=>{dispatch(removeItem(id))},
         addQuantity: (id)=>{dispatch(addQuantity(id))},
         subtractQuantity: (id)=>{dispatch(subtractQuantity(id))}
